@@ -1,47 +1,45 @@
-CREATE TABLE `words` (
-  `id` int PRIMARY KEY,
-  `word` varchar(255),
-  `definition` tinytext,
-  `attributes_id` int,
-  `language_id` int
+-- Table for word attributes
+CREATE TABLE word_attributes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pos VARCHAR(12),
+    level VARCHAR(10),
+    topic VARCHAR(15)
+);
+-- Table for words
+CREATE TABLE words (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    word VARCHAR(50) NOT NULL,
+    definition TEXT,
+    attributes_id INT,
+    language_id INT,
+    FOREIGN KEY (attributes_id) REFERENCES word_attributes(id),
+    FOREIGN KEY (language_id) REFERENCES languages(id)
 );
 
-CREATE TABLE `synonyms` (
-  `word_id` int,
-  `synonym_id` int
+-- Table for translations
+CREATE TABLE translations (
+    word_id INT,
+    word_language_id INT,
+    translation_id INT,
+    translation_language_id INT,
+    FOREIGN KEY (word_id) REFERENCES words(id),
+    FOREIGN KEY (word_language_id) REFERENCES languages(id),
+    FOREIGN KEY (translation_id) REFERENCES words(id),
+    FOREIGN KEY (translation_language_id) REFERENCES languages(id)
 );
 
-CREATE TABLE `languages` (
-  `id` int,
-  `language` varchar(20)
+
+-- Table for synonyms
+CREATE TABLE synonyms (
+    word_id INT,
+    synonym_id INT,
+    FOREIGN KEY (word_id) REFERENCES words(id),
+    FOREIGN KEY (synonym_id) REFERENCES words(id)
 );
 
-CREATE TABLE `word_attributes` (
-  `id` int,
-  `pos` varchar(12),
-  `level` varchar(10),
-  `topic` varhcar(15)
+-- Table for languages
+CREATE TABLE languages (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    language VARCHAR(20) NOT NULL UNIQUE
 );
 
-CREATE TABLE `translations` (
-  `word_id` int,
-  `word_language_id` int,
-  `translation_id` int,
-  `translation_language_id` int
-);
-
-ALTER TABLE `translations` ADD FOREIGN KEY (`word_id`) REFERENCES `words` (`id`);
-
-ALTER TABLE `languages` ADD FOREIGN KEY (`id`) REFERENCES `words` (`language_id`);
-
-ALTER TABLE `translations` ADD FOREIGN KEY (`word_language_id`) REFERENCES `languages` (`id`);
-
-ALTER TABLE `translations` ADD FOREIGN KEY (`translation_id`) REFERENCES `words` (`id`);
-
-ALTER TABLE `translations` ADD FOREIGN KEY (`translation_language_id`) REFERENCES `languages` (`id`);
-
-ALTER TABLE `synonyms` ADD FOREIGN KEY (`word_id`) REFERENCES `words` (`id`);
-
-ALTER TABLE `synonyms` ADD FOREIGN KEY (`synonym_id`) REFERENCES `words` (`id`);
-
-ALTER TABLE `words` ADD FOREIGN KEY (`attributes_id`) REFERENCES `word_attributes` (`id`);
