@@ -1,3 +1,5 @@
+USE online_dictionary;
+
 -- Table for word attributes
 CREATE TABLE word_attributes (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -9,7 +11,7 @@ CREATE TABLE word_attributes (
 CREATE TABLE words (
     id INT PRIMARY KEY AUTO_INCREMENT,
     word VARCHAR(50) NOT NULL,
-    definition TEXT,
+    definition TINYTEXT,
     attributes_id INT,
     language_id INT,
     FOREIGN KEY (attributes_id) REFERENCES word_attributes(id),
@@ -22,9 +24,9 @@ CREATE TABLE translations (
     word_language_id INT,
     translation_id INT,
     translation_language_id INT,
-    FOREIGN KEY (word_id) REFERENCES words(id),
+    FOREIGN KEY (word_id) REFERENCES words(id) ON DELETE CASCADE,
     FOREIGN KEY (word_language_id) REFERENCES languages(id),
-    FOREIGN KEY (translation_id) REFERENCES words(id),
+    FOREIGN KEY (translation_id) REFERENCES words(id) ON DELETE CASCADE,
     FOREIGN KEY (translation_language_id) REFERENCES languages(id)
 );
 
@@ -33,8 +35,8 @@ CREATE TABLE translations (
 CREATE TABLE synonyms (
     word_id INT,
     synonym_id INT,
-    FOREIGN KEY (word_id) REFERENCES words(id),
-    FOREIGN KEY (synonym_id) REFERENCES words(id)
+    FOREIGN KEY (word_id) REFERENCES words(id) ON DELETE CASCADE,
+    FOREIGN KEY (synonym_id) REFERENCES words(id) ON DELETE CASCADE
 );
 
 -- Table for languages
@@ -42,4 +44,5 @@ CREATE TABLE languages (
     id INT PRIMARY KEY AUTO_INCREMENT,
     language VARCHAR(20) NOT NULL UNIQUE
 );
+
 
