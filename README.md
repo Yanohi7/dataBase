@@ -1,7 +1,7 @@
 surname: Khudaska
 topic: online dictionary
 environment: dbdiagram.io
-![image](https://github.com/Yanohi7/dataBase/assets/148817991/11d30e4f-c111-40e9-8a85-1a055bbcdc17)
+![db](https://github.com/Yanohi7/dataBase/assets/148817991/c3151596-6205-4dc4-8709-e618b6b748e7)
 Таблиця word_attributes містить атрибути слова(рівень володіння, тема, частина мови)
 Таблиця words містить самі слова, їх визначення та посилання на айді атрибута та мови
 Таблиця languages містить мови
