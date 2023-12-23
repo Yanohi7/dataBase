@@ -1,14 +1,14 @@
 surname: Khudaska
 topic: online dictionary
 environment: dbdiagram.io
-![db](https://github.com/Yanohi7/dataBase/assets/148817991/c3151596-6205-4dc4-8709-e618b6b748e7)
+![image](https://github.com/Yanohi7/dataBase/assets/148817991/8a43ebd3-bb4a-4625-a038-d675e2d0d9ba)
 
-Таблиця word_attributes містить атрибути слова(рівень володіння, тема, частина мови)
+
 
 Таблиця words містить самі слова, їх визначення та посилання на айді атрибута та мови
 
 Таблиця languages містить мови
 
-Таблиця synonyms містить синоніми(вказується айді слова(word_id) та вказується айді слова(synonym_id) як синонім до першого слова)
+Таблиця topics містить теми
 
 Таблиця translations містить переклади слів(вказується айді слова(word_id) та вказується айді слова-перекладу(translation_id), так само обираються айді мови першого слова та айді мови для перекладу другого слова)
