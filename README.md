@@ -1,6 +1,6 @@
 surname: Khudaska
 topic: online dictionary
-environment: dbdiagram.io
+environment: MySQL Workbench
 ![image](https://github.com/Yanohi7/dataBase/assets/148817991/8a43ebd3-bb4a-4625-a038-d675e2d0d9ba)
 
 
